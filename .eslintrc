@@ -1,0 +1,20 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "rules": {
+    "id-length": [2, {"exceptions": ["_", "i"]}]
+  },
+  "globals": {
+    "beforeEach": true,
+    "beforeAll": true,
+    "afterEach": true,
+    "afterAll": true,
+    "describe": true,
+    "xdescribe": true,
+    "fdescribe": true,
+    "it": true,
+    "xit": true,
+    "fit": true,
+    "expect": true
+  }
+}
