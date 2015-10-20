@@ -1,6 +1,6 @@
 {
   "name": "@nolemmings/mockingbird",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A stand-alone express server which allows dynamically register a mock request and consume them when called.",
   "repository": "bitbucket:nolemmings/mockingbird.git",
   "main": "./src/index.js",
