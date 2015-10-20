@@ -22,5 +22,5 @@ if (!module.parent) {
 }
 
 module.exports = function() {
-  return server;
+  return app;
 }
