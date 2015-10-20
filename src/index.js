@@ -13,7 +13,14 @@ var app = require('./server')();
 var config = require('./config');
 var log = require('./logger');
 
-// Start the ExpressJS server.
-var server = app.listen(config.get('port'), function() {
-  log.info('Involve backend listening at http://%s:%s', server.address().address, server.address().port);
-});
+// Start the ExpressJS server if not being require'd
+var server = null;
+if (!module.parent) {
+  server = app.listen(config.get('port'), function() {
+    log.info('Involve backend listening at http://%s:%s', server.address().address, server.address().port);
+  });
+}
+
+module.exports = function() {
+  return server;
+}
