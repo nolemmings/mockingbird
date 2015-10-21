@@ -22,9 +22,9 @@ var server = mockingbird().listen(3000, function() {
 
 ## Create an Expectation
 
-To register which requests you expect to trigger and what response you'd like to have returned you must register an expectation.
+To register which requests you want to trigger and what response you'd like to have returned you must create an expectation.
 
-Request:
+**Request:**
 ```text
 POST /expectation
 
@@ -45,7 +45,7 @@ POST /expectation
 }
 ```
 
-Response:
+**Response:**
 ```text
 {
    "request": {
@@ -69,13 +69,13 @@ Response:
 
 When you've registered an expectation you can trigger it by simplt calling the specified url and method.
 
-For example:
-```
+**For example:**
+```sh
 curl -v -H "Content-Type: application/json" -X GET localhost:3000/user/123
 ```
 
-Response:
-```
+**Response:**
+```json
 {
   "id": "123",
   "name": "Johnny",
