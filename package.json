@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "description": "A stand-alone express server which allows dynamically register a mock request and consume them when called.",
   "repository": "bitbucket:nolemmings/mockingbird.git",
-  "main": "./src/index.js",
+  "main": "./lib/server.js",
   "author": {
     "name": "Nolemmings",
     "email": "dev@nolemmings.nl"
@@ -12,18 +12,23 @@
     "babel-core": "^5.8.25",
     "babel-eslint": "^4.1.3",
     "chai": "^3.3.0",
+    "del": "^2.0.2",
     "eslint-config-airbnb": "^0.1.0",
     "eslint-plugin-react": "^3.6.3",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.3.0",
     "gulp-eslint": "^1.0.0",
     "gulp-nodemon": "^2.0.4",
+    "gulp-sourcemaps": "^1.6.0",
     "mocha": "^2.3.3"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel/register"
+    "test": "mocha --compilers js:babel/register",
+    "compile": "babel -d lib/ src/",
+    "prepublish": "npm run compile"
   },
   "dependencies": {
+    "babel": "^5.8.23",
     "body-parser": "^1.14.1",
     "convict": "^1.0.1",
     "express": "^4.13.3",

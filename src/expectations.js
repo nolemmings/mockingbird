@@ -19,30 +19,31 @@ class Expectations {
    * Finds an expectation by its method and url.
    */
   findIndex(method, url) {
-    const result = this.expectations.findIndex((expectation) => {
+    const index = this.expectations.findIndex(expectation => {
       return expectation.request.method.toLowerCase() === method.toLowerCase()
         && expectation.request.url === url;
     });
-    return result;
+    return index;
   }
 
   /**
-   * Returns the matched expectation or `undefined` when not found.
+   * Returns the matched expectation or `null` when not found.
    *
    * Increments the `requested` property by 1 and removes the expectation
    * when the expectation has been requested the defined number of times.
    */
   consume(method, url) {
     const i = this.findIndex(method, url);
-    const expectation = this.expectations[i];
     if (i > -1) {
-      this.expectations[i].requested++;
+      const expectation = this.expectations[i];
+      expectation.requested++;
       // Prevent from matching this expectation ever again
-      if (this.expectations[i].requested === this.expectations[i].repeat) {
+      if (expectation.repeat !== -1 && expectation.requested === expectation.repeat) {
         this.expectations.splice(i, 1);
       }
+      return expectation;
     }
-    return expectation;
+    return null;
   }
 }
 
