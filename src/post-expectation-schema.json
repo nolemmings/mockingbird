@@ -3,6 +3,11 @@
   "description": "A product from Acme's catalog",
   "type": "object",
   "properties": {
+    "testId": {
+      "description": "A unique identifier for your test run",
+      "type": "string",
+      "minLength": 1
+    },
     "request": {
       "description": "The expected request",
       "type": "object",

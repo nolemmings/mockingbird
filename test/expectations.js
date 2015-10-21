@@ -1,23 +1,12 @@
 import { post } from './request';
 import { expect } from 'chai';
+import { expectation } from './fixture';
 
 describe('POST /expectations', () => {
   let body = null;
 
   beforeEach(() => {
-    body = {
-      request: {
-        url: '/test',
-        method: 'get',
-      },
-      response: {
-        status: 418,
-        body: {
-          hello: 'World!'
-        },
-      },
-      repeat: 2,
-    };
+    body = Object.assign({}, expectation);
   });
 
   it('should create an expectation', (done) => {

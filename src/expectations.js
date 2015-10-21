@@ -1,3 +1,5 @@
+import uuid from 'node-uuid';
+
 class Expectations {
   constructor() {
     this.expectations = [];
@@ -7,12 +9,23 @@ class Expectations {
    * Creates a new request expectation on the bottom of the stack.
    */
   add(request) {
+    request.id = uuid.v4();
     if (!request.repeat) {
       request.repeat = 1;
     }
     request.requestCount = 0;
     this.expectations.push(request);
     return request;
+  }
+
+  /**
+   * Finds an expectation by its id.
+   */
+  findById(id) {
+    const result = this.expectations.find(expectation => {
+      return expectation.id === id;
+    });
+    return result;
   }
 
   /**
