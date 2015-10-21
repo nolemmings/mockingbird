@@ -14,7 +14,7 @@ Start the server like a normal express server:
 ```javascript
 var mockingbird = require('@nolemmings/mockingbird');
 
-var server = mockingbird().listen(3000, function() {
+var server = mockingbird.listen(3000, function() {
   var port = server.address().port;
   console.log('App listening at http://localhost:%s', port);
 });

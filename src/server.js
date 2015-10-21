@@ -12,13 +12,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/expectations', postExpectation, postExpectation);
 app.all('*', mockRequest);
 
-// Start server when module is not being require'd
+// Start server when not being require'd
 if (!module.parent) {
   app.listen(config.get('port'), () => {
     log.info(`App listening on ${server.address().port}`);
   });
 }
 
-export default () => {
-  return app;
-};
+export default app;

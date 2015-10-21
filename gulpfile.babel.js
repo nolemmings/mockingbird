@@ -1,9 +1,11 @@
 import gulp from 'gulp';
 import eslint from 'gulp-eslint';
 import babel from 'gulp-babel';
+import babelCompiler from 'babel/register';
 import sourcemaps from 'gulp-sourcemaps';
 import nodemon from 'gulp-nodemon';
 import del from 'del';
+import mocha from 'gulp-mocha';
 
 const paths = {
   src: 'src',
@@ -40,6 +42,15 @@ gulp.task('lint', () => {
   return gulp.src(['gulpfile.babel.js', 'src/**/*.js', 'test/**/*.js'])
     .pipe(eslint())
     .pipe(eslint.format());
+});
+
+gulp.task('test', () => {
+  return gulp.src(['test/**/*.js'])
+    .pipe(mocha({
+        compilers: {
+            js: babelCompiler
+        }
+    }));
 });
 
 gulp.task('watch', ['build', 'lint'], () => {
