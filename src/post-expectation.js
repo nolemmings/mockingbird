@@ -6,7 +6,7 @@ import fs from 'fs';
 const postExpectationSchema = JSON.parse(fs.readFileSync(__dirname + '/post-expectation-schema.json', { encoding: 'utf8' }));
 const ajv = new Ajv({
   allErrors: true,
-  jsonPointers: true
+  jsonPointers: true,
 });
 ajv.addSchema(postExpectationSchema, 'postExpectationSchema');
 
@@ -18,10 +18,10 @@ export default (req, res) => {
   if (!valid) {
     res.status(422).send({
       error: 'Invalid input',
-      errorDetails: ajv.errors
+      errorDetails: ajv.errors,
     });
   } else {
-    const expected = expectations.add(req.body);
+    const expected = expectations.add(req.params.testId, req.body);
     res.status(201).send(expected);
   }
 };

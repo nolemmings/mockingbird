@@ -8,8 +8,9 @@ class Expectations {
   /**
    * Creates a new request expectation on the bottom of the stack.
    */
-  add(request) {
+  add(testId, request) {
     request.id = uuid.v4();
+    request.testId = testId;
     if (!request.repeat) {
       request.repeat = 1;
     }
@@ -21,9 +22,10 @@ class Expectations {
   /**
    * Finds an expectation by its id.
    */
-  findById(id) {
+  findById(testId, id) {
     const result = this.expectations.find(expectation => {
-      return expectation.id === id;
+      return expectation.testId === testId
+        && expectation.id === id;
     });
     return result;
   }
@@ -31,9 +33,10 @@ class Expectations {
   /**
    * Finds an expectation by its method and url.
    */
-  findIndex(method, url) {
+  findIndex(testId, method, url) {
     const index = this.expectations.findIndex(expectation => {
-      return expectation.request.method.toLowerCase() === method.toLowerCase()
+      return expectation.testId === testId
+        && expectation.request.method.toLowerCase() === method.toLowerCase()
         && expectation.request.url === url;
     });
     return index;
@@ -45,8 +48,8 @@ class Expectations {
    * Increments the `requested` property by 1 and removes the expectation
    * when the expectation has been requested the defined number of times.
    */
-  consume(method, url) {
-    const i = this.findIndex(method, url);
+  consume(testId, method, url) {
+    const i = this.findIndex(testId, method, url);
     if (i > -1) {
       const expectation = this.expectations[i];
       expectation.requestCount++;

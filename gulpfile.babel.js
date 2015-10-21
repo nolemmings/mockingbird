@@ -15,10 +15,10 @@ gulp.task('clean:build', () => {
   return del(paths.dest + '/*');
 });
 
-gulp.task('copy', function () {
+gulp.task('copy', () => {
   return gulp.src(`${paths.src}/*.json`)
     .pipe(gulp.dest(paths.dest));
-})
+});
 
 gulp.task('build', ['clean:build', 'copy'], () => {
   return gulp.src(paths.src + '/**/*.js')

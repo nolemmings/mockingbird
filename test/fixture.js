@@ -2,20 +2,20 @@ import { post } from './request';
 
 export const expectation = {
   request: {
-    url: '/test',
+    url: '/unit-test',
     method: 'get',
   },
   response: {
     status: 418,
     body: {
-      hello: 'World!'
+      hello: 'World!',
     },
   },
   repeat: 1,
 };
 
-export function createExpectation(body, done) {
-  post('/expectations', 201, body, (err, res) => {
+export function createExpectation(testId, body, done) {
+  post(`/tests/${testId}/expectations`, 201, body, (err, res) => {
     done(err, res);
   });
 }
