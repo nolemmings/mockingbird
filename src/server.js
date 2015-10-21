@@ -14,7 +14,9 @@ app.all('*', mockRequest);
 
 // Start server when module is not being require'd
 if (!module.parent) {
-  app.listen(config.get('port'));
+  app.listen(config.get('port'), () => {
+    log.info(`App listening on ${server.address().port}`);
+  });
 }
 
 export default () => {

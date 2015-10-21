@@ -4,8 +4,20 @@ A stand-alone express server which allows dynamically register a mock request an
 
 ## Installation
 
-```
+```sh
 npm install @nolemmings/mockingbird
+```
+
+## Run
+
+Start the server like a normal express server:
+```javascript
+var mockingbird = require('@nolemmings/mockingbird');
+
+var server = mockingbird().listen(3000, function() {
+  var port = server.address().port;
+  console.log('App listening at http://localhost:%s', port);
+});
 ```
 
 ## Create an Expectation
