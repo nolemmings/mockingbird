@@ -1,7 +1,6 @@
 import gulp from 'gulp';
 import eslint from 'gulp-eslint';
 import babel from 'gulp-babel';
-import babelCompiler from 'babel/register';
 import sourcemaps from 'gulp-sourcemaps';
 import nodemon from 'gulp-nodemon';
 import del from 'del';
@@ -46,11 +45,7 @@ gulp.task('lint', () => {
 
 gulp.task('test', () => {
   return gulp.src(['test/**/*.js'])
-    .pipe(mocha({
-        compilers: {
-            js: babelCompiler
-        }
-    }));
+    .pipe(mocha());
 });
 
 gulp.task('watch', ['build', 'lint'], () => {
