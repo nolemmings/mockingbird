@@ -65,6 +65,8 @@ POST /expectation
 }
 ```
 
+When a request has been triggered the number of times defined in `repeat` it will start returning a 404 with an error message.
+
 ## Running a mock request
 
 When you've registered an expectation you can trigger it by simplt calling the specified url and method.
