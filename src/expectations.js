@@ -10,7 +10,7 @@ class Expectations {
     if (!request.repeat) {
       request.repeat = 1;
     }
-    request.requested = 0;
+    request.requestCount = 0;
     this.expectations.push(request);
     return request;
   }
@@ -36,9 +36,9 @@ class Expectations {
     const i = this.findIndex(method, url);
     if (i > -1) {
       const expectation = this.expectations[i];
-      expectation.requested++;
+      expectation.requestCount++;
       // Prevent from matching this expectation ever again
-      if (expectation.repeat !== -1 && expectation.requested === expectation.repeat) {
+      if (expectation.repeat !== -1 && expectation.requestCount === expectation.repeat) {
         this.expectations.splice(i, 1);
       }
       return expectation;

@@ -1,7 +1,27 @@
 import expectations from './expectations';
+import Ajv from 'ajv';
+import fs from 'fs';
 
+// Load json schema
+const postExpectationSchema = JSON.parse(fs.readFileSync(__dirname + '/post-expectation-schema.json', { encoding: 'utf8' }));
+const ajv = new Ajv({
+  allErrors: true,
+  jsonPointers: true
+});
+ajv.addSchema(postExpectationSchema, 'postExpectationSchema');
+
+/**
+ * Registers a new expectation.
+ */
 export default (req, res) => {
-  const request = req.body;
-  const expected = expectations.add(request);
-  res.status(201).send(expected);
+  const valid = ajv.validate('postExpectationSchema', req.body);
+  if (!valid) {
+    res.status(422).send({
+      error: 'Invalid input',
+      errorDetails: ajv.errors
+    });
+  } else {
+    const expected = expectations.add(req.body);
+    res.status(201).send(expected);
+  }
 };

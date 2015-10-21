@@ -26,7 +26,7 @@ To register which requests you want to trigger and what response you'd like to h
 
 **Request:**
 ```text
-POST /expectation
+POST /expectations
 
 {
   "request": {
@@ -61,7 +61,7 @@ POST /expectation
       }
    },
    "repeat": 3,
-   "requested": 0
+   "requestCount": 0
 }
 ```
 

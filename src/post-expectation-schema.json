@@ -1,0 +1,44 @@
+{
+  "title": "Product",
+  "description": "A product from Acme's catalog",
+  "type": "object",
+  "properties": {
+    "request": {
+      "description": "The expected request",
+      "type": "object",
+      "properties": {
+        "method": {
+          "description": "Expected request method",
+          "type": "string"
+        },
+        "url": {
+          "description": "Expected request url without the basepath, should begin with a forward slash (e.g. `/user/123`)",
+          "type": "string"
+        }
+      },
+      "required": ["method", "url"]
+    },
+    "response": {
+      "description": "The response returned when request has been triggered",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "Response status",
+          "type": "integer",
+          "min": 100,
+          "max": 999
+        },
+        "body": {
+          "description": "Response body"
+        }
+      },
+      "required": ["status"]
+    },
+    "repeat": {
+      "description": "How often a request can be repeated before it returns a 404",
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "required": ["request", "response"]
+}
