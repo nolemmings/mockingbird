@@ -102,6 +102,22 @@ GET /tests/eae37fb0/expectations/7df3567b-3b84-4496-8df5-57506c51eabb
 }
 ```
 
+## Get all test expectations
+
+Return all expectations.
+
+```text
+GET /tests/eae37fb0
+```
+
+## Remove a Test
+
+To delete all expectations for a specific test case simply run the following:
+
+```text
+DELETE /tests/eae37fb0
+```
+
 ## Running a mock request
 
 When you've registered an expectation you can trigger it by simply calling the specified url and method.
