@@ -43,6 +43,28 @@ class Expectations {
   }
 
   /**
+   * Returns a list of all expectations with given test id.
+   */
+  getByTestId(testId) {
+    return this.expectations.filter(elm => {
+      return elm.testId === testId;
+    });
+  }
+
+  /**
+   * Deletes all tests with a certain test id.
+   */
+  deleteByTestId(testId) {
+    const removedItems = this.expectations.filter(elm => {
+      return elm.testId === testId;
+    });
+    this.expectations = this.expectations.filter(elm => {
+      return elm.testId !== testId;
+    });
+    return removedItems; // Return removed items
+  }
+
+  /**
    * Returns the matched expectation or `null` when not found.
    *
    * Increments the `requested` property by 1 and removes the expectation

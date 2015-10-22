@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 import config from './config';
 import postExpectation from './post-expectation';
 import getExpectation from './get-expectation';
+import getTest from './get-test';
+import deleteTest from './delete-test';
 import mockRequest from './mock-request';
 import { default as log, requestLogger } from './logger';
 
@@ -23,6 +25,8 @@ app.all('/*', (req, res, next) => {
 
 app.get('/tests/:testId/expectations/:id', getExpectation);
 app.post('/tests/:testId/expectations', postExpectation);
+app.get('/tests/:testId', getTest);
+app.delete('/tests/:testId', deleteTest);
 app.all('/tests/:testId/*', mockRequest);
 app.all('*', (req, res) => {
   res.status(404).send({

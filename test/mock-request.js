@@ -43,4 +43,18 @@ describe('POST /expectations', () => {
       });
     });
   });
+
+  it('should consider repeat = -1 to be indefinite', (done) => {
+    const body = Object.assign({}, expectation, {repeat: -1, id: uuid.v4()});
+    body.request.url = '/unit-test-3';
+    createExpectation(testId, body, (err) => {
+      if (err) return done(err);
+      get(`/tests/${testId}/unit-test-3`, 418, (err2) => {
+        if (err2) return done(err2);
+        get(`/tests/${testId}/unit-test-2`, 418, (err3) => {
+          done(err3);
+        });
+      });
+    });
+  });
 });

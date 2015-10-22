@@ -15,3 +15,9 @@ export function get(url, status, done) {
     .set('Accept', 'application/json')
     .expect(status, done);
 }
+
+export function del(url, status, done) {
+  request(app)
+    .delete(url)
+    .expect(status, done);
+}
