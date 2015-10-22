@@ -5,11 +5,14 @@ import config from './config';
 import postExpectation from './post-expectation';
 import getExpectation from './get-expectation';
 import mockRequest from './mock-request';
-import log from './logger';
+import { default as log, requestLogger } from './logger';
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Log request and response bodies using expressWinston
+app.use(requestLogger);
 
 app.all('/*', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
