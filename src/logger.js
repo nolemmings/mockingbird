@@ -18,6 +18,10 @@ const logger = new Logger({
 
 export default logger;
 
+/**
+ * Express middleware to log request/response.
+ * This middleware should be registered before routes are defined.
+ */
 export function requestLogger(req, res, next) {
   const url = req.originalUrl || req.url;
   req._startTime = (new Date);
