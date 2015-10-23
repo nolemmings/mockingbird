@@ -1,6 +1,6 @@
 {
   "title": "Product",
-  "description": "A product from Acme's catalog",
+  "description": "Validation schema for POST /test/:testId/expectations",
   "type": "object",
   "properties": {
     "testId": {

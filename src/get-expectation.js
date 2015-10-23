@@ -1,7 +1,7 @@
 import expectations from './expectations';
 
 /**
- * Registers a new expectation.
+ * Retrieves a new expectation.
  */
 export default (req, res) => {
   const expectation = expectations.findById(req.params.testId, req.params.id);

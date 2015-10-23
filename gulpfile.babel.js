@@ -11,7 +11,7 @@ const paths = {
   dest: 'lib',
 };
 
-gulp.task('clean:build', () => {
+gulp.task('clean', () => {
   return del(paths.dest + '/*');
 });
 
@@ -20,7 +20,7 @@ gulp.task('copy', () => {
     .pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('build', ['clean:build', 'copy'], () => {
+gulp.task('build', ['clean', 'copy'], () => {
   return gulp.src(paths.src + '/**/*.js')
     .pipe(sourcemaps.init())
     .pipe(babel())

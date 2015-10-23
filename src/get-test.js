@@ -1,7 +1,7 @@
 import expectations from './expectations';
 
 /**
- * Deletes all expectations associated with test id.
+ * Retrieves all expectations associated with a test id.
  */
 export default (req, res) => {
   const items = expectations.getByTestId(req.params.testId);

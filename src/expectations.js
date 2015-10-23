@@ -24,8 +24,7 @@ class Expectations {
    */
   findById(testId, id) {
     const result = this.expectations.find(expectation => {
-      return expectation.testId === testId
-        && expectation.id === id;
+      return expectation.testId === testId && expectation.id === id;
     });
     return result;
   }
@@ -34,12 +33,11 @@ class Expectations {
    * Finds an expectation by its method and url.
    */
   findIndex(testId, method, url) {
-    const index = this.expectations.findIndex(expectation => {
+    return this.expectations.findIndex(expectation => {
       return expectation.testId === testId
         && expectation.request.method.toLowerCase() === method.toLowerCase()
         && expectation.request.url === url;
     });
-    return index;
   }
 
   /**
