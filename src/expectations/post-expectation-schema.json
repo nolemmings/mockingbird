@@ -35,6 +35,10 @@
         },
         "body": {
           "description": "Response body"
+        },
+        "headers": {
+          "description": "Response HTTP headers",
+          "type": "object"
         }
       },
       "required": ["status"]

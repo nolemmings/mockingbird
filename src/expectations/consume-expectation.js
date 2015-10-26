@@ -1,4 +1,4 @@
-import expectations from './expectations';
+import expectations from '../models/expectations';
 
 /**
  * Catchall request handler checks whether an expectation was defined; if so
@@ -12,8 +12,22 @@ export default (req, res) => {
 
   const expectation = expectations.consume(req.params.testId, req.method, matchUrl);
   if (expectation) {
+    // Too many requests
+    if (expectation.repeat !== -1 && expectation.requestCount > expectation.repeat) {
+      return res.status(429).send({
+        error: `Too many requests (${expectation.repeat} requests, max ${expectation.requestCount})`,
+      });
+    }
+
     // Return expected response
-    res.status(expectation.response.status).send(expectation.response.body);
+    if (expectation.response.headers) {
+      res.set(expectation.response.headers);
+    }
+    if (expectation.response.body) {
+      res.status(expectation.response.status).send(expectation.response.body);
+    } else {
+      res.status(expectation.response.status).send();
+    }
   } else {
     // Return 404 whenever expectation could not be found
     const msg = `Expectation '${req.method.toUpperCase()} ${req.originalUrl}' not found in test '${req.params.testId}'`;

@@ -1,13 +1,13 @@
-import { post } from './request';
+import { post } from '../request';
 import { expect } from 'chai';
-import { expectation } from './fixture';
+import { expectations } from '../fixture';
 import uuid from 'node-uuid';
 
 describe('POST /expectations', () => {
   let body = null;
 
   beforeEach(() => {
-    body = Object.assign({}, expectation);
+    body = Object.assign({}, expectations[0]);
   });
 
   it('should create an expectation', (done) => {
