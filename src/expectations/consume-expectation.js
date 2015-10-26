@@ -12,6 +12,13 @@ export default (req, res) => {
 
   const expectation = expectations.consume(req.params.testId, req.method, matchUrl);
   if (expectation) {
+    // Too many requests
+    if (expectation.repeat !== -1 && expectation.requestCount > expectation.repeat) {
+      return res.status(429).send({
+        error: `Too many requests (${expectation.repeat} requests, max ${expectation.requestCount})`
+      });
+    }
+
     // Return expected response
     if (expectation.response.headers) {
       res.set(expectation.response.headers);

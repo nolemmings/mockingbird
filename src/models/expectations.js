@@ -73,10 +73,6 @@ class Expectations {
     if (i > -1) {
       const expectation = this.expectations[i];
       expectation.requestCount++;
-      // Prevent from matching this expectation ever again
-      if (expectation.repeat !== -1 && expectation.requestCount === expectation.repeat) {
-        this.expectations.splice(i, 1);
-      }
       return expectation;
     }
     return null;

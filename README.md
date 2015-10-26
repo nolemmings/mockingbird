@@ -95,6 +95,10 @@ GET /tests/eae37fb0/expectations/7df3567b-3b84-4496-8df5-57506c51eabb
          "id": "123",
          "name": "Johnny",
          "email": "my@email.org"
+      },
+      "headers": {
+        "X-RateLimit-Limit": "5000",
+        "X-RateLimit-Remaining": "4999"
       }
    },
    "repeat": 3,
@@ -135,3 +139,5 @@ curl -v -H "Content-Type: application/json" -X GET localhost:3000/users/123
   "email": "my@email.org"
 }
 ```
+
+Returns `429 Too Many Requests` when the request count is more than the specified number of repetitions. Returns `404 Not Found` when expectation could not be found.
