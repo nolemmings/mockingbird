@@ -1,4 +1,4 @@
-import expectations from './expectations';
+import expectations from '../models/expectations';
 
 /**
  * Retrieves a new expectation.

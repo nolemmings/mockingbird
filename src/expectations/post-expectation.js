@@ -1,4 +1,4 @@
-import expectations from './expectations';
+import expectations from '../models/expectations';
 import Ajv from 'ajv';
 import fs from 'fs';
 

@@ -1,6 +1,6 @@
-import { get, del } from './request';
+import { get, del } from '../request';
 import { expect } from 'chai';
-import { expectation, createExpectation } from './fixture';
+import { expectations, createExpectation } from '../fixture';
 import uuid from 'node-uuid';
 
 describe('DELETE /test', () => {
@@ -11,7 +11,7 @@ describe('DELETE /test', () => {
   beforeEach((done) => {
     testId1 = uuid.v4();
     testId2 = uuid.v4();
-    const body = Object.assign({}, expectation, {repeat: 2});
+    const body = Object.assign({}, expectations[0], {repeat: 2});
     createExpectation(testId1, body, (err, res) => {
       if (err) return done(err);
       createExpectation(testId2, body, (err, res) => {
@@ -25,10 +25,10 @@ describe('DELETE /test', () => {
   it('should delete a test', (done) => {
     del(`/tests/${testId1}`, 200, (err, res) => {
       if (err) return done(err);
-      expect(res.body[0].testId).to.equal(testId1);
+      expect(res.body.expectations[0].testId).to.equal(testId1);
       get(`/tests/${testId2}`, 200, (err2, res2) => {
         if (err2) return done(err2);
-        expect(res2.body[0].testId).to.equal(testId2);
+        expect(res2.body.expectations[0].testId).to.equal(testId2);
         done();
       });
     });

@@ -1,6 +1,6 @@
 # mockingbird
 
-A stand-alone express server which allows dynamically register a mock request and consume them when called. This server allows you to build a fake backend without much overhead, complex mocking frameworks for your framework/language/whatever. Just start the server, make a request describing your expectation and run your actual test.
+A stand-alone express server which allows dynamically registering a mock request and consume them when called. This server allows you to build a fake backend without much overhead, complex mocking frameworks for your framework/language/whatever. Just start the server, make a request describing your expectation and run your actual test.
 
 ## Installation
 
