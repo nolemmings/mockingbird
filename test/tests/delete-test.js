@@ -6,17 +6,15 @@ import uuid from 'node-uuid';
 describe('DELETE /test', () => {
   let testId1 = null;
   let testId2 = null;
-  let expected = null;
 
   beforeEach((done) => {
     testId1 = uuid.v4();
     testId2 = uuid.v4();
     const body = Object.assign({}, expectations[0], {repeat: 2});
-    createExpectation(testId1, body, (err, res) => {
+    createExpectation(testId1, body, (err) => {
       if (err) return done(err);
-      createExpectation(testId2, body, (err, res) => {
-        if (err) return done(err);
-        expected = res.body;
+      createExpectation(testId2, body, (err2) => {
+        if (err2) return done(err2);
         done();
       });
     });
@@ -35,7 +33,7 @@ describe('DELETE /test', () => {
   });
 
   it('should return 404 when test id not found', (done) => {
-    del(`/tests/invalid`, 404, (err, res) => {
+    del(`/tests/invalid`, 404, (err) => {
       done(err);
     });
   });

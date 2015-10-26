@@ -15,7 +15,7 @@ export default (req, res) => {
     // Too many requests
     if (expectation.repeat !== -1 && expectation.requestCount > expectation.repeat) {
       return res.status(429).send({
-        error: `Too many requests (${expectation.repeat} requests, max ${expectation.requestCount})`
+        error: `Too many requests (${expectation.repeat} requests, max ${expectation.requestCount})`,
       });
     }
 

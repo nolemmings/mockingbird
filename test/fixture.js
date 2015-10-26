@@ -9,7 +9,7 @@ export const expectations = [{
     status: 200,
     body: {
       hello: 'World!',
-    }
+    },
   },
   repeat: 1,
 }, {
@@ -25,7 +25,7 @@ export const expectations = [{
     },
     body: {
       hello: 'World!',
-    }
+    },
   },
   repeat: 1,
 }];

@@ -50,8 +50,7 @@ describe('POST /expectations', () => {
       if (err) return done(err);
       get(`/tests/${testId}/consumed`, 200, (err2) => {
         if (err2) return done(err2);
-        get(`/tests/${testId}/consumed`, 429, (err3, res3) => {
-          console.log('res3', res3)
+        get(`/tests/${testId}/consumed`, 429, (err3) => {
           done(err3);
         });
       });
