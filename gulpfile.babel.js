@@ -16,7 +16,7 @@ gulp.task('clean', () => {
 });
 
 gulp.task('copy', () => {
-  return gulp.src(`${paths.src}/*.json`)
+  return gulp.src(`${paths.src}/**/*.json`)
     .pipe(gulp.dest(paths.dest));
 });
 
