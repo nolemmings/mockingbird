@@ -1,84 +1,71 @@
 import uuid from 'node-uuid';
 
-class Expectations {
-  constructor() {
-    this.expectations = [];
+/**
+ * An expectations object contains all expected request/response-pairs defined
+ * on a specified method and url.
+ */
+export default class Expectations {
+  constructor(method, url) {
+    this.method = method;
+    this.url = url;
+    this.pending = [];
+    this.finished = [];
   }
 
   /**
-   * Creates a new request expectation on the bottom of the stack.
+   * Adds a request to the pending expectations.
    */
-  add(testId, request) {
+  add(request) {
+    request.requestCount = 0;
     request.id = uuid.v4();
-    request.testId = testId;
     if (!request.repeat) {
       request.repeat = 1;
     }
-    request.requestCount = 0;
-    this.expectations.push(request);
+    this.pending.push(request);
     return request;
+  }
+
+  /**
+   * Returns all expectations.
+   */
+  getAll() {
+    return [].concat(this.finished, this.pending);
+  }
+
+  /**
+   * Returns whether any consumable expectations.
+   */
+  hasPending() {
+    return this.pending.length > 0;
   }
 
   /**
    * Finds an expectation by its id.
    */
-  findById(testId, id) {
-    const result = this.expectations.find(expectation => {
-      return expectation.testId === testId && expectation.id === id;
-    });
-    return result;
+  find(id) {
+    for (const expectation of this.getAll()) {
+      if (expectation.id === id) return expectation;
+    }
+    return null;
   }
 
   /**
-   * Finds an expectation by its method and url.
-   */
-  findIndex(testId, method, url) {
-    return this.expectations.findIndex(expectation => {
-      return expectation.testId === testId
-        && expectation.request.method.toLowerCase() === method.toLowerCase()
-        && expectation.request.url === url;
-    });
-  }
-
-  /**
-   * Returns a list of all expectations with given test id.
-   */
-  getByTestId(testId) {
-    return this.expectations.filter(elm => {
-      return elm.testId === testId;
-    });
-  }
-
-  /**
-   * Deletes all tests with a certain test id.
-   */
-  deleteByTestId(testId) {
-    const removedItems = this.expectations.filter(elm => {
-      return elm.testId === testId;
-    });
-    this.expectations = this.expectations.filter(elm => {
-      return elm.testId !== testId;
-    });
-    return removedItems; // Return removed items
-  }
-
-  /**
-   * Returns the matched expectation or `null` when not found.
+   * Returns the first pending expectation or `null` when none found.
    *
-   * Increments the `requested` property by 1 and removes the expectation
-   * when the expectation has been requested the defined number of times.
+   * Increments the `requestCount` property by 1 and removes the expectation
+   * from the pending expectation array when the expectation has been requested
+   * the maximum number of times.
    */
-  consume(testId, method, url) {
-    const i = this.findIndex(testId, method, url);
-    if (i > -1) {
-      const expectation = this.expectations[i];
+  consume() {
+    const expectation = this.pending[0];
+    if (expectation) {
       expectation.requestCount++;
+      if (expectation.repeat !== -1 && expectation.requestCount >= expectation.repeat) {
+        this.pending.splice(0, 1);
+        this.finished.push(expectation);
+      }
       return expectation;
     }
     return null;
   }
 }
-
-const expectations = new Expectations();
-
-export default expectations;

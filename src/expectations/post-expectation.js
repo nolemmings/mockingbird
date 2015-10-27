@@ -1,4 +1,4 @@
-import expectations from '../models/expectations';
+import tests from '../models/tests';
 import Ajv from 'ajv';
 import fs from 'fs';
 
@@ -21,7 +21,7 @@ export default (req, res) => {
       errorDetails: ajv.errors,
     });
   } else {
-    const expected = expectations.add(req.params.testId, req.body);
+    const expected = tests.add(req.params.testId, req.body);
     res.status(201).send(expected);
   }
 };

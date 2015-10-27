@@ -1,4 +1,4 @@
-import expectations from '../models/expectations';
+import tests from '../models/tests';
 
 /**
  * Catchall request handler checks whether an expectation was defined; if so
@@ -10,16 +10,17 @@ export default (req, res) => {
   urlPieces.splice(0, 3);
   const matchUrl = '/' + urlPieces.join('/');
 
-  const expectation = expectations.consume(req.params.testId, req.method, matchUrl);
-  if (expectation) {
+  const expectations = tests.findExpectations(req.params.testId, req.method, matchUrl);
+  if (expectations) {
     // Too many requests
-    if (expectation.repeat !== -1 && expectation.requestCount > expectation.repeat) {
+    if (!expectations.hasPending()) {
       return res.status(429).send({
-        error: `Too many requests (${expectation.requestCount} requests, max ${expectation.repeat})`,
+        error: `Too many requests`,
       });
     }
 
     // Return expected response
+    const expectation = expectations.consume();
     if (expectation.response.headers) {
       res.set(expectation.response.headers);
     }

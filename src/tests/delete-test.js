@@ -1,13 +1,13 @@
-import expectations from '../models/expectations';
+import tests from '../models/tests';
 import { testRepresentation } from './test-util';
 
 /**
  * Deletes all expectations associated with test id.
  */
 export default (req, res) => {
-  const removedItems = expectations.deleteByTestId(req.params.testId);
-  if (removedItems.length > 0) {
-    res.status(200).send(testRepresentation(removedItems));
+  const removed = tests.delete(req.params.testId);
+  if (removed) {
+    res.status(200).send(testRepresentation(removed));
   } else {
     res.status(404).send({
       error: `Test '${req.params.id}' not found`,
