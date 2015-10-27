@@ -48,10 +48,16 @@ describe('POST /expectations', () => {
     body.request.url = '/consumed';
     createExpectation(testId, body, (err) => {
       if (err) return done(err);
-      get(`/tests/${testId}/consumed`, 200, (err2) => {
-        if (err2) return done(err2);
-        get(`/tests/${testId}/consumed`, 429, (err3) => {
-          done(err3);
+      createExpectation(testId, body, (err) => {
+        if (err) return done(err);
+        get(`/tests/${testId}/consumed`, 200, (err2) => {
+          if (err2) return done(err2);
+          get(`/tests/${testId}/consumed`, 200, (err3) => {
+            if (err3) return done(err3);
+            get(`/tests/${testId}/consumed`, 429, (err4) => {
+              done(err4);
+            });
+          });
         });
       });
     });
