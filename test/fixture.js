@@ -28,6 +28,37 @@ export const expectations = [{
     },
   },
   repeat: 1,
+}, {
+  request: {
+    url: '/expectation3',
+    method: 'post',
+    body: {
+      a: 1,
+      b: { c: 3 },
+    },
+  },
+  response: {
+    status: 201,
+    headers: {
+      'Header-1': 'value 1, value 2',
+      'Header-2': 'value 3',
+    },
+    body: {
+      test: 'test',
+    },
+  },
+  repeat: 1,
+}, {
+  request: {
+    url: '/expectation4',
+    method: 'post',
+    body: null, // Expect empty body
+  },
+  response: {
+    status: 201,
+    body: 4,
+  },
+  repeat: 1,
 }];
 
 export function createExpectation(testId, body, done) {

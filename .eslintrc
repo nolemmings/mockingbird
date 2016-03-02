@@ -2,7 +2,7 @@
   "parser": "babel-eslint",
   "extends": "airbnb",
   "rules": {
-    "id-length": [2, {"exceptions": ["_", "i"]}]
+    "id-length": [0]
   },
   "globals": {
     "beforeEach": true,

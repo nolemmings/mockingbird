@@ -10,7 +10,7 @@ export default (req, res) => {
   urlPieces.splice(0, 3);
   const matchUrl = '/' + urlPieces.join('/');
 
-  const expectations = tests.findExpectations(req.params.testId, req.method, matchUrl);
+  const expectations = tests.findExpectations(req.params.testId, req.method, matchUrl, req.body);
   if (expectations) {
     // Too many requests
     if (!expectations.hasPending()) {

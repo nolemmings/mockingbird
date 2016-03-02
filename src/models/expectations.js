@@ -1,13 +1,15 @@
 import uuid from 'node-uuid';
+import _ from 'lodash';
 
 /**
  * An expectations object contains all expected request/response-pairs defined
  * on a specified method and url.
  */
 export default class Expectations {
-  constructor(method, url) {
+  constructor(method, url, body = undefined) {
     this.method = method;
     this.url = url;
+    this.body = body;
     this.pending = [];
     this.finished = [];
   }
@@ -30,6 +32,16 @@ export default class Expectations {
    */
   getAll() {
     return [].concat(this.finished, this.pending);
+  }
+
+  /**
+   * Returns true when this expectation matches specified method, url and body.
+   * When the body of this expectation is `undefined` any body will match.
+   */
+  matches(method, url, body = undefined) {
+    return this.method.toLowerCase() === this.method.toLowerCase()
+      && this.url === url
+      && (this.body === undefined || _.isEqual(body, this.body));
   }
 
   /**
