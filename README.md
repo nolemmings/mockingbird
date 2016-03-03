@@ -30,8 +30,11 @@ POST /tests/eae37fb0/expectations
 
 {
   "request": {
-    "method": "get",
-    "url": "/users/123"
+    "method": "post",
+    "url": "/users/123",
+    "body": {
+      "some": "object"
+    }
   },
   "response": {
     "status": 200,
@@ -47,14 +50,19 @@ POST /tests/eae37fb0/expectations
 
 Set repeat to `-1` to repeat indefinitely.
 
+Body is an optional param which when omitted ensures any request body is accepted.
+
 **Response:**
 ```text
 {
    "id": "7df3567b-3b84-4496-8df5-57506c51eabb",
    "testId": "eae37fb0",
    "request": {
-      "method": "get",
-      "url": "/users/123"
+      "method": "post",
+      "url": "/users/123",
+      "body": {
+        "some": "object"
+      }
    },
    "response": {
       "status": 200,

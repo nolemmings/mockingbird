@@ -19,6 +19,9 @@
         "url": {
           "description": "Expected request url without the basepath, should begin with a forward slash (e.g. `/user/123`)",
           "type": "string"
+        },
+        "body": {
+          "type": "object"
         }
       },
       "required": ["method", "url"]

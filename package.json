@@ -1,6 +1,6 @@
 {
   "name": "@nolemmings/mockingbird",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A stand-alone express server which allows dynamically register a mock request and consume them when called.",
   "repository": "bitbucket:nolemmings/mockingbird.git",
   "main": "./lib/server.js",
@@ -37,6 +37,7 @@
     "cors": "^2.7.1",
     "express": "^4.13.3",
     "gulp-mocha": "^2.1.3",
+    "lodash": "^4.6.0",
     "node-uuid": "^1.4.3",
     "winston": "^1.1.1"
   }

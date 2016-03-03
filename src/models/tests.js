@@ -1,4 +1,5 @@
 import Expectations from './expectations';
+import _ from 'lodash';
 
 class Tests {
   constructor() {
@@ -11,13 +12,13 @@ class Tests {
   add(testId, expected) {
     expected.testId = testId;
     if (!this.tests[testId]) this.tests[testId] = [];
-    let expectations = this.findExpectations(testId, expected.request.method, expected.request.url);
+    let expectations = this.findExpectations(testId, expected.request.method, expected.request.url, expected.request.body);
     if (expectations) {
       // Add request to existing expectations
       expectations.add(expected);
     } else {
       // No expectations yet for specified method and url, create a new one
-      expectations = new Expectations(expected.request.method, expected.request.url);
+      expectations = new Expectations(expected.request.method, expected.request.url, expected.request.body);
       expectations.add(expected);
       this.tests[testId].push(expectations);
     }
@@ -25,16 +26,13 @@ class Tests {
   }
 
   /**
-   * Returns a single Expectations object by its method and url. Returns `null` when not found.
+   * Returns a single Expectations object by its method, url and optionally body.
+   * Returns `null` when not found.
    */
-  findExpectations(testId, method, url) {
+  findExpectations(testId, method, url, body = undefined) {
     const test = this.tests[testId];
     if (!test) return null;
-
-    return test.find(expectations => {
-      return expectations.method.toLowerCase() === method.toLowerCase()
-        && expectations.url === url;
-    });
+    return test.find(expectation => expectation.matches(method, url, body));
   }
 
   /**

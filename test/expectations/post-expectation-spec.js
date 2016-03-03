@@ -7,7 +7,7 @@ describe('POST /expectations', () => {
   let body = null;
 
   beforeEach(() => {
-    body = Object.assign({}, expectations[0]);
+    body = Object.assign({}, expectations[2]);
   });
 
   it('should create an expectation', (done) => {
