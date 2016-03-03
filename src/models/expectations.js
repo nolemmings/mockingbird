@@ -39,7 +39,7 @@ export default class Expectations {
    * When the body of this expectation is `undefined` any body will match.
    */
   matches(method, url, body = undefined) {
-    return this.method.toLowerCase() === this.method.toLowerCase()
+    return method.toLowerCase() === this.method.toLowerCase()
       && this.url === url
       && (this.body === undefined || _.isEqual(body, this.body));
   }

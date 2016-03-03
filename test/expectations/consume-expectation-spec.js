@@ -31,6 +31,13 @@ describe('POST /expectations', () => {
       });
     });
 
+    it('should not consume when methods do not match', (done) => {
+      post(`/tests/${testId}/expectation1`, 404, {}, (err, res) => {
+        if (err) return done(err);
+        done();
+      });
+    });
+
     it('should return response headers', (done) => {
       createExpectation(testId, expectations[1], (err) => {
         if (err) return done(err);
@@ -107,8 +114,7 @@ describe('POST /expectations', () => {
 
     it('should not accept request when body is specified but doesn not match', (done) => {
       post(`/tests/${testId}/expectation3`, 404, {}, (err) => {
-        if (err) return done(err);
-        done();
+        done(err);
       });
     });
   });

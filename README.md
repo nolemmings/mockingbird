@@ -50,7 +50,7 @@ POST /tests/eae37fb0/expectations
 
 Set repeat to `-1` to repeat indefinitely.
 
-Body is an optional param which when omitted ensures any request body is accepted1. To avoid this behaviour
+Body is an optional param which when omitted ensures any request body is accepted.
 
 **Response:**
 ```text

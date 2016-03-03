@@ -12,7 +12,6 @@ class Tests {
   add(testId, expected) {
     expected.testId = testId;
     if (!this.tests[testId]) this.tests[testId] = [];
-    console.log('expected.request.body', expected.request.body)
     let expectations = this.findExpectations(testId, expected.request.method, expected.request.url, expected.request.body);
     if (expectations) {
       // Add request to existing expectations
