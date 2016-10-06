@@ -39,7 +39,7 @@ export function requestLogger(req, res, next) {
     const msg = `${req.method} ${url} ${res.statusCode} ${res.responseTime}ms ${resBody}`;
 
     // Determine log function based on response status code
-    let logFunction = logger.info;
+    let logFunction = logger.debug;
     if (res.statusCode >= 400) logFunction = logger.warn;
     if (res.statusCode >= 500) logFunction = logger.error;
     logFunction(msg);
