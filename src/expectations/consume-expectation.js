@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import tests from '../models/tests';
 
 /**
@@ -34,6 +35,7 @@ export default (req, res) => {
     const msg = `Expectation '${req.method.toUpperCase()} ${req.originalUrl}' not found in test '${req.params.testId}'`;
     res.status(404).send({
       error: msg,
+      request: _.pick(req, 'method', 'originalUrl', 'body'),
     });
   }
 };
