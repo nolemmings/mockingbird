@@ -31,6 +31,17 @@ describe('POST /expectations', () => {
       });
     });
 
+    it('should properly decode query params', (done) => {
+      const body = Object.assign({}, expectations[4]);
+      createExpectation(testId, body, (err, res) => {
+        get(`/tests/${testId}/escape'this'`, 200, (err, res) => {
+          if (err) return done(err);
+          expect(res.body).to.deep.equal({ hello: 'Escape this' });
+          done();
+        });
+      });
+    });
+
     it('should not consume when methods do not match', (done) => {
       post(`/tests/${testId}/expectation1`, 404, {}, (err, res) => {
         if (err) return done(err);
