@@ -61,7 +61,7 @@ export const expectations = [{
   repeat: 1,
 }, {
   request: {
-    url: `/escape'this'`,
+    url: `/escape?test=${encodeURIComponent(" ',")}`,
     method: 'get',
   },
   response: {

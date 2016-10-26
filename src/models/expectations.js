@@ -6,9 +6,9 @@ import _ from 'lodash';
  * on a specified method and url.
  */
 export default class Expectations {
-  constructor(method, url, body = undefined) {
+  constructor(method, requestUrl, body = undefined) {
     this.method = method;
-    this.url = url;
+    this.url = requestUrl;
     this.body = body;
     this.pending = [];
     this.finished = [];
@@ -38,9 +38,9 @@ export default class Expectations {
    * Returns true when this expectation matches specified method, url and body.
    * When the body of this expectation is `undefined` any body will match.
    */
-  matches(method, url, body = undefined) {
+  matches(method, requestUrl, body = undefined) {
     return method.toLowerCase() === this.method.toLowerCase()
-      && this.url === decodeURI(url)
+      && this.url === requestUrl
       && (this.body === undefined || _.isEqual(body, this.body));
   }
 
