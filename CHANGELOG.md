@@ -7,6 +7,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Changed
 - The request body of an expectation is now always interpreted as a string and should be passed as a string to POST `/tests/:testId/expectations`
 
+## [0.2.8] - 2016-10-26
+### Changed
+- Prepublish now also runs test suite
+- Revert decodeURI; enforce user specifies exact URL that should match (including encoded chars)
+
+## [0.2.7] - 2016-10-25
+### Changed
+- Compares decoded uri's rather than plain uri's
+- Remove redundant dependencies
+
 ## [0.2.6] - 2016-10-24
 ### Changed
 - Error `404 Expectation not found in test` now returns property `request` in error body.

@@ -59,7 +59,19 @@ export const expectations = [{
     body: 4,
   },
   repeat: 1,
-}];
+}, {
+  request: {
+    url: `/escape?test=${encodeURIComponent(" ',")}`,
+    method: 'get',
+  },
+  response: {
+    status: 200,
+    body: {
+      hello: 'Escape this',
+    },
+  },
+  repeat: 1,
+}, ];
 
 export function createExpectation(testId, body, done) {
   post(`/tests/${testId}/expectations`, 201, body, (err, res) => {
