@@ -1,5 +1,4 @@
 import uuid from 'node-uuid';
-import _ from 'lodash';
 
 /**
  * An expectations object contains all expected request/response-pairs defined

@@ -32,7 +32,7 @@ describe('POST /expectations', () => {
     });
 
     it('should not consume when methods do not match', (done) => {
-      post(`/tests/${testId}/expectation1`, 404, {}, (err, res) => {
+      post(`/tests/${testId}/expectation1`, 404, {}, (err) => {
         if (err) return done(err);
         done();
       });

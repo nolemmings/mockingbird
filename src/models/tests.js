@@ -1,5 +1,4 @@
 import Expectations from './expectations';
-import _ from 'lodash';
 
 class Tests {
   constructor() {
