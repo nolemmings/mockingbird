@@ -13,6 +13,7 @@ class Tests {
     expected.testId = testId;
     if (!this.tests[testId]) this.tests[testId] = [];
     let expectations = this.findExpectations(testId, expected.request.method, expected.request.url, expected.request.body);
+
     if (expectations) {
       // Add request to existing expectations
       expectations.add(expected);
@@ -22,6 +23,7 @@ class Tests {
       expectations.add(expected);
       this.tests[testId].push(expectations);
     }
+
     return expected;
   }
 
@@ -47,6 +49,7 @@ class Tests {
         result = result.concat(expect.getAll());
       }
     }
+
     return result;
   }
 

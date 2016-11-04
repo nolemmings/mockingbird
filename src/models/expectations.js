@@ -41,7 +41,7 @@ export default class Expectations {
   matches(method, url, body = undefined) {
     return method.toLowerCase() === this.method.toLowerCase()
       && this.url === url
-      && (this.body === undefined || _.isEqual(body, this.body));
+      && (this.body === undefined || body === this.body);
   }
 
   /**

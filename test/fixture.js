@@ -32,10 +32,10 @@ export const expectations = [{
   request: {
     url: '/expectation3',
     method: 'post',
-    body: {
+    body: JSON.stringify({
       a: 1,
       b: { c: 3 },
-    },
+    }),
   },
   response: {
     status: 201,

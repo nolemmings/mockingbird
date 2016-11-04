@@ -2,9 +2,9 @@
   "name": "@nolemmings/mockingbird",
   "version": "0.2.6",
   "description": "REST mock server.",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/nolemmings/mockingbird.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nolemmings/mockingbird.git"
   },
   "main": "./lib/server.js",
   "author": {
