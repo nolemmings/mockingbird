@@ -21,7 +21,7 @@ export default (req, res) => {
     }
 
     // Return expected response
-    const expectation = expectations.consume();
+    const expectation = expectations.consume(req);
     if (expectation.response.headers) {
       res.set(expectation.response.headers);
     }

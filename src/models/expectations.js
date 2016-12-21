@@ -19,6 +19,7 @@ export default class Expectations {
   add(request) {
     request.requestCount = 0;
     request.id = uuid.v4();
+    request.requests = [];
     if (!request.repeat) {
       request.repeat = 1;
     }
@@ -67,10 +68,11 @@ export default class Expectations {
    * from the pending expectation array when the expectation has been requested
    * the maximum number of times.
    */
-  consume() {
+  consume(request) {
     const expectation = this.pending[0];
     if (expectation) {
       expectation.requestCount++;
+      expectation.requests.push({ body: request.body });
       if (expectation.repeat !== -1 && expectation.requestCount >= expectation.repeat) {
         this.pending.splice(0, 1);
         this.finished.push(expectation);
