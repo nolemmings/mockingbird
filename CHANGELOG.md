@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.3.2]
+### Changed
+- GET `/tests/:testId` now returns the property `requests` for additional information about the consumed requests, e.g. the request body.
+
 ## [0.3.1]
 ### Changed
 - The request body of an expectation is now always interpreted as a string and should be passed as a string to POST `/tests/:testId/expectations`
