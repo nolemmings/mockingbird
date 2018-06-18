@@ -10,7 +10,7 @@ export default (req, res) => {
     res.status(200).send(testRepresentation(removed));
   } else {
     res.status(404).send({
-      error: `Test '${req.params.id}' not found`,
+      error: `Test '${req.params.testId}' not found`,
     });
   }
 };
