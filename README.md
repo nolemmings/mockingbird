@@ -5,6 +5,12 @@ A stand-alone express server which allows dynamically registering a mock request
 ## Installation
 
 ```sh
+yarn add -D @nolemmings/mockingbird
+```
+
+or
+
+```sh
 npm install @nolemmings/mockingbird
 ```
 
