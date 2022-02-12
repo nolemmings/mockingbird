@@ -33,7 +33,7 @@
     "prepublish": "in-publish && gulp build && npm test"
   },
   "dependencies": {
-    "ajv": "^1.4.5",
+    "ajv": "^6.12.3",
     "babel": "^5.8.23",
     "body-parser": "^1.14.1",
     "convict": "^1.0.1",
